@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export PATH=$PATH:/usr/local/share/python
+
+pyflakes "$1"
+pep8 --repeat "$1"
