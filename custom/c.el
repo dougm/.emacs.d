@@ -27,7 +27,9 @@
 (defun maybe-vmware-style ()
   (when (and buffer-file-name
              (string-match "bora" buffer-file-name))
-    (c-set-style "vmware")))
+    (c-set-style "vmware")
+    (set (make-local-variable 'compile-command)
+         (concat "iscons " buffer-file-name))))
 
 (add-hook 'c-mode-common-hook 'maybe-vmware-style)
 (add-hook 'c-mode-common-hook 'esk-prog-mode-hook)

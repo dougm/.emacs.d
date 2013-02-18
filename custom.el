@@ -15,6 +15,9 @@
 (setq ac-dictionary-files (list (concat user-emacs-directory ".dict")))
 (ac-config-default)
 
+(require 'compile)
+(setq-default compilation-auto-jump-to-first-error t)
+
 (require 'flymake)
 (require 'flymake-cursor)
 
@@ -40,6 +43,8 @@
 
 ;; keys
 (put 'downcase-region 'disabled nil)
+(global-set-key (kbd "C-u") 'scroll-down-command)
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-x f") 'find-grep-dired)
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-x C-k") 'compile)
