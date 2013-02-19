@@ -19,6 +19,7 @@
                         flymake-cursor
                         flymake-ruby
                         gist
+                        groovy-mode
                         haskell-mode
                         ido-ubiquitous
                         inf-ruby
@@ -28,6 +29,7 @@
                         magit
                         markdown-mode
                         paredit
+                        puppet-mode
                         python-mode
                         pymacs
                         scala-mode
