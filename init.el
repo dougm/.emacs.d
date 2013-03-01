@@ -1,11 +1,10 @@
 (push (concat user-emacs-directory "bin")  exec-path)
 
 (defun load-dir (dir)
-  (add-to-list 'load-path dir)
-  (mapc 'load (directory-files dir nil "^[^#].*el$")))
+  (mapc 'load (directory-files dir t "^[^#].*el$")))
 
 (load-file "~/.emacs.d/elpa.el")
-(load-dir (concat user-emacs-directory "vendor/"))
+(add-to-list 'load-path (concat user-emacs-directory "vendor/"))
 
 (load-file "~/.emacs.d/custom.el")
 
