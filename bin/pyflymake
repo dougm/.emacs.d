@@ -2,5 +2,4 @@
 
 export PATH=$PATH:/usr/local/share/python
 
-pyflakes "$1"
-pep8 --repeat --ignore E302 "$1"
+flake8 "$1"
