@@ -23,6 +23,7 @@
                         haskell-mode
                         ido-ubiquitous
                         inf-ruby
+                        jedi
                         json
                         linum-off
                         lua-mode
