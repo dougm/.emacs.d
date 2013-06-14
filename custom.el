@@ -48,3 +48,5 @@
 (global-set-key (kbd "C-x f") 'find-grep-dired)
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-x C-k") 'compile)
+
+(server-start)
