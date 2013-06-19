@@ -29,6 +29,7 @@
                         lua-mode
                         magit
                         markdown-mode
+                        nose
                         paredit
                         puppet-mode
                         python-mode

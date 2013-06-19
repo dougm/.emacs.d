@@ -1,4 +1,5 @@
 (require 'python-mode)
+(require 'nose)
 
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
@@ -19,6 +20,9 @@
 (add-hook 'prog-mode-hook
 (lambda ()
   (local-set-key (kbd "RET") 'py-newline-and-indent)
+  (local-set-key (kbd "C-c a") 'nosetests-all)
+  (local-set-key (kbd "C-c m") 'nosetests-module)
+  (local-set-key (kbd "C-c .") 'nosetests-one)
 ))
 
 (setq jedi:key-related-names (kbd "C-c l"))
