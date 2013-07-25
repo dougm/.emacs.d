@@ -1,0 +1,7 @@
+(add-hook 'sh-mode-hook 'esk-prog-mode-hook)
+(add-hook 'sh-mode-hook (lambda ()
+            (setq whitespace-line-column 120)
+            (setq sh-tab-width 2)
+            (setq sh-basic-offset 2)
+            (setq sh-indentation 2)
+            (define-key sh-mode-map (kbd "RET") 'reindent-then-newline-and-indent)))
