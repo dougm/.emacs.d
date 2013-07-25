@@ -7,8 +7,6 @@
 (require 'go-autocomplete)
 (require 'auto-complete-config)
 
-(add-to-list 'load-path "~/gocode/src/github.com/dougm/goflymake")
-
 (require 'go-flymake)
 
 (defun go-build ()

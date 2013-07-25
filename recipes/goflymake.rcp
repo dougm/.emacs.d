@@ -1,0 +1,4 @@
+(:name goflymake
+       :description "goflymake"
+       :type github
+       :pkgname "dougm/goflymake")
