@@ -1,5 +1,6 @@
 ;; colors
 (load-theme 'solarized-dark t)
+(setq ag-highlight-search t)
 
 ;; lines
 (require 'linum-off)
@@ -45,7 +46,8 @@
 (put 'downcase-region 'disabled nil)
 (global-set-key (kbd "C-u") 'scroll-down-command)
 (global-set-key (kbd "C-x g") 'goto-line)
-(global-set-key (kbd "C-x f") 'find-grep-dired)
+(global-set-key (kbd "C-x f") 'ag-project)
+(global-set-key (kbd "C-x r") 'ag-regexp-project-at-point)
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-x C-k") 'compile)
 
