@@ -13,5 +13,6 @@
 (el-get 'sync
         '(el-get
           ag
+          go
           goflymake
           ))

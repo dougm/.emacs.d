@@ -1,0 +1,4 @@
+(:name go
+       :description "go"
+       :type github
+       :pkgname "dominikh/go-mode.el")
