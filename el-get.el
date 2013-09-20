@@ -14,5 +14,8 @@
         '(el-get
           ag
           go
+          go-autocomplete
           goflymake
+          thrift
+          xcscope
           ))

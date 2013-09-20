@@ -1,0 +1,4 @@
+(:name go-autocomplete
+       :description "auto-complete-mode backend for go-mode"
+       :type http
+       :url "https://raw.github.com/nsf/gocode/master/emacs/go-autocomplete.el")
