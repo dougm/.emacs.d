@@ -3,6 +3,10 @@
 (add-hook 'go-mode-hook 'esk-prog-mode-hook)
 (add-hook 'go-mode-hook (lambda ()
             (setq whitespace-line-column 120)))
+(add-hook 'go-mode-hook (lambda ()
+                          (local-set-key (kbd "C-c o") 'godef-jump)))
+(add-hook 'go-mode-hook (lambda ()
+                          (local-set-key (kbd "C-c d") 'godef-describe)))
 
 (require 'go-autocomplete)
 (require 'auto-complete-config)
