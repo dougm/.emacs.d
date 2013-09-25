@@ -55,3 +55,4 @@
 (server-start)
 
 (add-to-list 'auto-mode-alist '("\\.vmx$" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.json$" . json-mode))

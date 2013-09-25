@@ -13,6 +13,7 @@
 (el-get 'sync
         '(el-get
           ag
+          json
           go
           go-autocomplete
           goflymake
