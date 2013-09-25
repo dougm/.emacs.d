@@ -51,4 +51,7 @@
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-x C-k") 'compile)
 
+;; misc
 (server-start)
+
+(add-to-list 'auto-mode-alist '("\\.vmx$" . conf-mode))
