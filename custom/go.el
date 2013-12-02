@@ -12,6 +12,7 @@
 (require 'auto-complete-config)
 
 (require 'go-flymake)
+(require 'golint)
 
 (defun go-build ()
   "compile project"

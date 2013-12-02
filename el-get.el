@@ -17,6 +17,7 @@
           go
           go-autocomplete
           goflymake
+          golint
           thrift
           xcscope
           ))
