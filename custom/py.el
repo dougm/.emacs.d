@@ -17,7 +17,7 @@
 
 (add-hook 'python-mode-hook 'esk-prog-mode-hook)
 
-(add-hook 'prog-mode-hook
+(add-hook 'python-mode-hook
 (lambda ()
   (local-set-key (kbd "RET") 'py-newline-and-indent)
   (local-set-key (kbd "C-c a") 'nosetests-all)
