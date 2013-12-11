@@ -25,6 +25,19 @@
 (require 'go-flymake)
 (require 'golint)
 
+(defvar go-tools-urls '("github.com/dougm/goflymake"
+                        "github.com/nsf/gocode"
+                        "github.com/golang/lint/golint"
+                        "code.google.com/p/rog-go/exp/cmd/godef"
+                        "code.google.com/p/rog-go/exp/cmd/gosym"))
+
+;;; $GOPATH/bin needs to be in $PATH for emacs to use the tools
+(defun go-install-tools ()
+  "install go tools for emacs"
+  (interactive)
+  (dolist (url go-tools-urls)
+    (shell-command (format "go get -u -v %s" url))))
+
 (defun go-build ()
   "compile project"
   (interactive)
