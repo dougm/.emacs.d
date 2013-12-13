@@ -30,7 +30,7 @@
 ;; whitespace
 (setq-default indent-tabs-mode nil)
 (setq whitespace-style '(face trailing lines-tail))
-(setq-default whitespace-line-column 80)
+(setq-default whitespace-line-column 120)
 (setq-default show-trailing-whitespace t)
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)

@@ -1,4 +1,0 @@
-(:name golint
-       :description "lint for the Go source code"
-       :type http
-       :url "https://raw.github.com/golang/lint/master/misc/emacs/golint.el")

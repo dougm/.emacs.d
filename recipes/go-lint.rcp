@@ -1,0 +1,9 @@
+(:name go-lint
+       :description "lint for the Go source code"
+       :type github
+       :pkgname "golang/lint"
+       :features (golint)
+       :build ("cd golint && go build -o golint")
+       :load-path ("misc/emacs")
+       :prepare (progn
+                  (add-to-list 'exec-path (el-get-package-directory "go-lint/golint"))))

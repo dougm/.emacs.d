@@ -1,0 +1,9 @@
+(:name go-flymake
+       :description "Flymake for the Go programming language"
+       :type github
+       :pkgname "dougm/goflymake"
+       :features (go-flymake)
+       :build (("go" "build" "-o" "goflymake"))
+       :build/windows-nt (("go" "build" "-o" "goflymake.exe"))
+       :prepare (progn
+                  (add-to-list 'exec-path (el-get-package-directory "go-flymake"))))

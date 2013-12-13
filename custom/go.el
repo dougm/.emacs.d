@@ -1,15 +1,28 @@
+;;; install and load packages via https://github.com/dimitri/el-get
+(el-get 'sync
+        '(go-mode
+          go-autocomplete
+          go-imports
+          go-flymake
+          go-lint
+          go-def))
+
 ;;; go-mode adds this to the end of the list, but doesn't work as advertised
 (require 'compile)
 (add-to-list 'compilation-error-regexp-alist 'gotest)
 (add-to-list 'compilation-error-regexp-alist-alist
              '(gotest . ("^\t+\\([^()\t\n]+\\):\\([0-9]+\\):? .*$" 1 2)))
 
-(require 'go-mode)
-(add-hook 'before-save-hook #'gofmt-before-save)
-(add-hook 'go-mode-hook 'esk-prog-mode-hook)
-(add-hook 'go-mode-hook (lambda ()
-            (setq whitespace-line-column 120)))
+;;; ignore 'go test -c' files
+(push ".test" completion-ignored-extensions)
 
+;;; run gofmt before saving a buffer
+(add-hook 'before-save-hook 'gofmt-before-save)
+
+;;; general options from emacs-starter-kit package
+(add-hook 'go-mode-hook 'esk-prog-mode-hook)
+
+;;; key-bindings
 (add-hook 'go-mode-hook
 (lambda ()
   (local-set-key (kbd "C-c o") 'godef-jump)
@@ -18,25 +31,6 @@
   (local-set-key (kbd "C-c m") 'go-test-module)
   (local-set-key (kbd "C-c .") 'go-test-one)
 ))
-
-(require 'go-autocomplete)
-(require 'auto-complete-config)
-
-(require 'go-flymake)
-(require 'golint)
-
-(defvar go-tools-urls '("github.com/dougm/goflymake"
-                        "github.com/nsf/gocode"
-                        "github.com/golang/lint/golint"
-                        "code.google.com/p/rog-go/exp/cmd/godef"
-                        "code.google.com/p/rog-go/exp/cmd/gosym"))
-
-;;; $GOPATH/bin needs to be in $PATH for emacs to use the tools
-(defun go-install-tools ()
-  "install go tools for emacs"
-  (interactive)
-  (dolist (url go-tools-urls)
-    (shell-command (format "go get -u -v %s" url))))
 
 (defun go-build ()
   "compile project"
@@ -58,7 +52,7 @@
   (interactive)
     (compile (concat "go test -v -test.run '" (go-grep-tests) "'")))
 
-(defun go-chk ()
+(defun go-check ()
   "gocheck project"
   (interactive)
     (compile "go test -gocheck.vv"))

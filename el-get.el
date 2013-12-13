@@ -14,10 +14,6 @@
         '(el-get
           ag
           json
-          go
-          go-autocomplete
-          goflymake
-          golint
           thrift
           xcscope
           ))

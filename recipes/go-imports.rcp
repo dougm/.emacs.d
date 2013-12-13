@@ -1,0 +1,9 @@
+(:name go-imports
+       :description "Tool to fix (add, remove) your Go imports automatically"
+       :type github
+       :pkgname "bradfitz/goimports"
+       :build (("go" "build" "-o" "goimports"))
+       :build/windows-nt (("go" "build" "-o" "goimports.exe"))
+       :lazy t
+       :prepare (progn
+                  (add-to-list 'exec-path (el-get-package-directory "go-imports"))))
