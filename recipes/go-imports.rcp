@@ -2,8 +2,10 @@
        :description "Tool to fix (add, remove) your Go imports automatically"
        :type github
        :pkgname "bradfitz/goimports"
-       :build (("go" "build" "-o" "goimports"))
-       :build/windows-nt (("go" "build" "-o" "goimports.exe"))
+       :build (mapcar
+                 (lambda (cmd)
+                   (list (concat "GOPATH=" (el-get-package-directory "go-imports/deps")) "go" (append cmd)))
+                 '(("get" "-d" "-v" ".") ("build" "-o" "goimports")))
        :lazy t
        :prepare (progn
                   (add-to-list 'exec-path (el-get-package-directory "go-imports"))))
