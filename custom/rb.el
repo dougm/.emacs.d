@@ -1,5 +1,7 @@
+(el-get 'sync
+        '(ruby-mode
+          flymake-ruby))
 (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(add-hook 'ruby-mode-hook 'esk-prog-mode-hook)
 ;; wtf python-mode has: (defvar ruby-indent-level nil)
 (setq ruby-indent-level 2)

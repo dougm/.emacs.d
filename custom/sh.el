@@ -1,4 +1,3 @@
-(add-hook 'sh-mode-hook 'esk-prog-mode-hook)
 (add-hook 'sh-mode-hook (lambda ()
             (setq sh-tab-width 2)
             (setq sh-basic-offset 2)

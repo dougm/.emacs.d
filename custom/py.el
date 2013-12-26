@@ -1,3 +1,7 @@
+(el-get 'sync
+        '(python-mode
+          jedi
+          nose))
 (require 'python-mode)
 (require 'nose)
 
@@ -15,10 +19,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.sc$" . python-mode))
 
-(add-hook 'python-mode-hook 'esk-prog-mode-hook)
-
 (add-hook 'python-mode-hook
 (lambda ()
+  (run-hooks 'prog-mode-hook)
   (local-set-key (kbd "RET") 'py-newline-and-indent)
   (local-set-key (kbd "C-c a") 'nosetests-all)
   (local-set-key (kbd "C-c m") 'nosetests-module)

@@ -19,9 +19,6 @@
 ;;; run gofmt before saving a buffer
 (add-hook 'before-save-hook 'gofmt-before-save)
 
-;;; general options from emacs-starter-kit package
-(add-hook 'go-mode-hook 'esk-prog-mode-hook)
-
 ;;; key-bindings
 (add-hook 'go-mode-hook
 (lambda ()

@@ -13,7 +13,20 @@
 (el-get 'sync
         '(el-get
           ag
-          json
-          thrift
+          auto-complete
+          autopair
+          color-theme-solarized
+          ido-ubiquitous
+          lua-mode
+          flymake-cursor
+          idle-highlight-mode
+          json-mode
+          linum-off
+          magit
+          markdown-mode
+          puppet-mode
+          smex
+          thrift-mode
+          yaml-mode
           xcscope
           ))

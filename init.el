@@ -3,8 +3,6 @@
 (defun load-dir (dir)
   (mapc 'load (directory-files dir t "^[^#].*el$")))
 
-(load-file "~/.emacs.d/elpa.el")
-
 (load-file "~/.emacs.d/el-get.el")
 
 (load-file "~/.emacs.d/custom.el")

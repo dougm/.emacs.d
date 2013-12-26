@@ -32,7 +32,6 @@
          (concat "iscons " buffer-file-name))))
 
 (add-hook 'c-mode-common-hook 'maybe-vmware-style)
-(add-hook 'c-mode-common-hook 'esk-prog-mode-hook)
 
 (require 'xcscope)
 (setq-default cscope-do-not-update-database t)
