@@ -1,8 +1,0 @@
-(:name go-def
-       :description "Required for go-mode godef functions"
-       :type hg
-       :url "https://code.google.com/p/rog-go"
-       :build ("cd exp/cmd/godef && go build -o godef")
-       :lazy t
-       :prepare (progn
-                  (add-to-list 'exec-path (el-get-package-directory "go-def/exp/cmd/godef"))))
