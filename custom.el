@@ -33,20 +33,23 @@
           (lambda ()
             (local-set-key (kbd "C-c e") 'flymake-goto-next-error)))
 (add-hook 'find-file-hook 'flymake-find-file-hook)
+(setq flymake-gui-warnings-enabled nil)
 
 ;; whitespace
 (setq-default indent-tabs-mode nil)
 (setq whitespace-style '(face trailing lines-tail))
 (setq-default whitespace-line-column 120)
-(setq-default show-trailing-whitespace t)
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook
-          '(lambda () (set-fill-column 80)))
+          '(lambda ()
+             (setq show-trailing-whitespace t)
+             (set-fill-column 80)))
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook
           (lambda ()
+            (setq show-trailing-whitespace t)
             (local-set-key (kbd "RET") 'newline-and-indent)))
 
 ;; keys
@@ -58,7 +61,8 @@
 (global-set-key (kbd "C-x r") 'ag-regexp-project-at-point)
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-x C-k") 'compile)
-(global-set-key (kbd "C-x C-g") 'magit-status)
+(global-set-key (kbd "C-x m") 'magit-status)
+(global-set-key (kbd "C-x o") 'ido-select-window)
 
 ;; smex
 (setq smex-save-file (concat user-emacs-directory ".smex-items"))
@@ -79,11 +83,17 @@
 
 ;; misc
 (server-start)
-(menu-bar-mode -1)
+(windmove-default-keybindings)
+(set-frame-parameter nil 'fullscreen 'fullboth)
+(progn
+  ;; Turn off mouse interface early in startup to avoid momentary display
+  (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
+    (when (fboundp mode) (funcall mode -1))))
 (require 'uniquify)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (setq visible-bell t
+      windmove-wrap-around t
       inhibit-startup-message t
       color-theme-is-global t
       sentence-end-double-space nil

@@ -16,17 +16,18 @@
           auto-complete
           autopair
           color-theme-solarized
-          ido-ubiquitous
-          lua-mode
           flymake-cursor
           idle-highlight-mode
+          ido-select-window
+          ido-ubiquitous
           json-mode
           linum-off
+          lua-mode
           magit
           markdown-mode
           puppet-mode
           smex
           thrift-mode
-          yaml-mode
           xcscope
+          yaml-mode
           ))
