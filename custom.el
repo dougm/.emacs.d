@@ -1,4 +1,5 @@
 ;; colors
+(setq solarized-broken-srgb nil)
 (load-theme 'solarized-dark t)
 (setq ag-highlight-search t)
 (set-face-background 'show-paren-match (face-background 'default))
@@ -10,7 +11,7 @@
              nil '(("\\<\\(XXX\\|TODO\\|FIXME\\)" 1 font-lock-warning-face t)))))
 
 ;; lines
-(setq linum-format " %d ")
+(unless window-system (setq linum-format " %d "))
 (add-hook 'prog-mode-hook 'linum-on)
 (column-number-mode t)
 (global-hl-line-mode t)
