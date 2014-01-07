@@ -1,11 +1,13 @@
 ;;; install and load packages via https://github.com/dimitri/el-get
 (el-get 'sync
-        '(go-mode
-          go-autocomplete
-          go-imports
+        '(go-autocomplete
+          go-def
+          go-eldoc
+          go-errcheck
           go-flymake
+          go-imports
           go-lint
-          go-def))
+          go-mode))
 
 ;;; go-mode adds this to the end of the list, but doesn't work as advertised
 (require 'compile)
