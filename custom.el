@@ -5,6 +5,11 @@
 (set-face-background 'show-paren-match (face-background 'default))
 (set-face-foreground 'show-paren-match "#def")
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
+(eval-after-load "eldoc"
+  '(progn
+     (set-face-background 'eldoc-highlight-function-argument (face-background 'default))
+     (set-face-foreground 'eldoc-highlight-function-argument "#def")
+     (set-face-attribute 'eldoc-highlight-function-argument nil :weight 'extra-bold)))
 (add-hook 'prog-mode-hook
           (lambda ()
             (font-lock-add-keywords
@@ -57,13 +62,15 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (global-set-key (kbd "C-u") 'scroll-down-command)
-(global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-x f") 'ag-project)
-(global-set-key (kbd "C-x r") 'ag-regexp-project-at-point)
-(global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
-(global-set-key (kbd "C-x C-k") 'compile)
+(global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-x m") 'magit-status)
 (global-set-key (kbd "C-x o") 'ido-select-window)
+(global-set-key (kbd "C-x r") 'ag-regexp-project-at-point)
+(global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-k") 'compile)
+(global-set-key (kbd "M-=") 'align-regexp)
 
 ;; smex
 (setq smex-save-file (concat user-emacs-directory ".smex-items"))
