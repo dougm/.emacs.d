@@ -91,7 +91,7 @@
 
 ;; misc
 (server-start)
-(windmove-default-keybindings)
+(windmove-default-keybindings 'meta)
 (set-frame-parameter nil 'fullscreen 'fullboth)
 (progn
   ;; Turn off mouse interface early in startup to avoid momentary display
