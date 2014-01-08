@@ -3,11 +3,12 @@
         '(go-autocomplete
           go-def
           go-eldoc
-          go-errcheck
+          go-errcheck-el
           go-flymake
           go-imports
           go-lint
-          go-mode))
+          go-mode
+          go-oracle))
 
 ;;; ignore 'go test -c' files
 (push ".test" completion-ignored-extensions)
@@ -23,6 +24,7 @@
   (local-set-key (kbd "C-c a") 'go-test-all)
   (local-set-key (kbd "C-c m") 'go-test-module)
   (local-set-key (kbd "C-c .") 'go-test-one)
+  (go-oracle-mode)
 ))
 
 (defun go-build ()
