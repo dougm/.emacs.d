@@ -66,6 +66,7 @@
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-x m") 'magit-status)
 (global-set-key (kbd "C-x o") 'ido-select-window)
+(global-set-key (kbd "C-x p") 'projectile-find-file)
 (global-set-key (kbd "C-x r") 'ag-regexp-project-at-point)
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -79,15 +80,19 @@
 
 ;; ido-mode
 (ido-mode t)
-(ido-ubiquitous t)
+(ido-ubiquitous-mode t)
+(flx-ido-mode t)
+(ido-vertical-mode t)
 (setq ido-enable-prefix nil
-      ido-enable-flex-matching t
       ido-auto-merge-work-directories-length nil
       ido-create-new-buffer 'always
       ido-use-filename-at-point 'guess
       ido-use-virtual-buffers t
       ido-handle-duplicate-virtual-buffers 2
       ido-max-prospects 10)
+
+;; enable projectile minor mode
+(add-hook 'prog-mode-hook 'projectile-on)
 
 ;; misc
 (server-start)
@@ -100,14 +105,18 @@
 (require 'uniquify)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(setq visible-bell t
-      windmove-wrap-around t
-      inhibit-startup-message t
+(setq backup-directory-alist `(("." . ,(expand-file-name "~/.emacs.d/backups")))
       color-theme-is-global t
+      diff-switches "-u"
+      enable-local-eval t
+      gc-cons-threshold 20000000
+      global-auto-revert-mode t
+      inhibit-startup-message t
+      save-place-file "~/.emacs.d/places"
       sentence-end-double-space nil
       uniquify-buffer-name-style 'forward
-      save-place-file "~/.emacs.d/places"
-      backup-directory-alist `(("." . ,(expand-file-name "~/.emacs.d/backups")))
-      diff-switches "-u")
+      windmove-wrap-around t
+      x-select-enable-clipboard t
+      visible-bell t)
 
 (add-to-list 'auto-mode-alist '("\\.vmx$" . conf-mode))

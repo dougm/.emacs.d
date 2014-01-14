@@ -17,14 +17,17 @@
           autopair
           color-theme-solarized
           flymake-cursor
+          flx
           idle-highlight-mode
           ido-select-window
           ido-ubiquitous
+          ido-vertical-mode
           json-mode
           linum-off
           lua-mode
           magit
           markdown-mode
+          projectile
           puppet-mode
           smex
           thrift-mode
