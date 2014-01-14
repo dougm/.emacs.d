@@ -24,7 +24,6 @@
   (local-set-key (kbd "C-c a") 'go-test-all)
   (local-set-key (kbd "C-c m") 'go-test-module)
   (local-set-key (kbd "C-c .") 'go-test-one)
-  (go-oracle-mode)
 ))
 
 (defun go-build ()
