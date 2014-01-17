@@ -68,10 +68,13 @@
 (global-set-key (kbd "C-x o") 'ido-select-window)
 (global-set-key (kbd "C-x p") 'projectile-find-file)
 (global-set-key (kbd "C-x r") 'ag-regexp-project-at-point)
+(global-set-key (kbd "C-x !") 'eshell-cd-current-buffer)
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x C-k") 'compile)
 (global-set-key (kbd "M-=") 'align-regexp)
+(global-set-key (kbd "M-+") 'text-scale-increase)
+(global-set-key (kbd "M-_") 'text-scale-decrease)
 
 ;; smex
 (setq smex-save-file (concat user-emacs-directory ".smex-items"))
