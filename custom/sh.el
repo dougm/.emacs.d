@@ -1,3 +1,6 @@
+(el-get 'sync
+        '(flymake-shell))
+
 (add-hook 'sh-mode-hook (lambda ()
             (setq sh-tab-width 2)
             (setq sh-basic-offset 2)
