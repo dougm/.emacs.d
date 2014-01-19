@@ -31,6 +31,7 @@
           puppet-mode
           smex
           thrift-mode
+          vagrant-tramp
           xcscope
           yaml-mode
           ))
