@@ -81,3 +81,6 @@
         (eshell-send-input))
       (end-of-buffer)
       (pop-to-buffer buffer))))
+
+;; key bindings
+(global-set-key (kbd "C-x !") 'eshell-cd-current-buffer)

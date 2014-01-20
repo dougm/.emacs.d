@@ -1,7 +1,6 @@
 ;; colors
 (setq solarized-broken-srgb nil)
 (load-theme 'solarized-dark t)
-(setq ag-highlight-search t)
 (set-face-background 'show-paren-match (face-background 'default))
 (set-face-foreground 'show-paren-match "#def")
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
@@ -62,40 +61,14 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (global-set-key (kbd "C-u") 'scroll-down-command)
-(global-set-key (kbd "C-x f") 'ag-project)
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-x m") 'magit-status)
-(global-set-key (kbd "C-x o") 'ido-select-window)
-(global-set-key (kbd "C-x p") 'projectile-find-file)
-(global-set-key (kbd "C-x r") 'ag-regexp-project-at-point)
-(global-set-key (kbd "C-x !") 'eshell-cd-current-buffer)
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x C-k") 'compile)
 (global-set-key (kbd "M-=") 'align-regexp)
 (global-set-key (kbd "M-+") 'text-scale-increase)
 (global-set-key (kbd "M-_") 'text-scale-decrease)
-
-;; smex
-(setq smex-save-file (concat user-emacs-directory ".smex-items"))
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-
-;; ido-mode
-(ido-mode t)
-(ido-ubiquitous-mode t)
-(flx-ido-mode t)
-(ido-vertical-mode t)
-(setq ido-enable-prefix nil
-      ido-auto-merge-work-directories-length nil
-      ido-create-new-buffer 'always
-      ido-use-filename-at-point 'guess
-      ido-use-virtual-buffers t
-      ido-handle-duplicate-virtual-buffers 2
-      ido-max-prospects 10)
-
-;; enable projectile minor mode
-(add-hook 'prog-mode-hook 'projectile-on)
 
 ;; misc
 (server-start)
@@ -105,7 +78,6 @@
   ;; Turn off mouse interface early in startup to avoid momentary display
   (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
     (when (fboundp mode) (funcall mode -1))))
-(require 'uniquify)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (setq backup-directory-alist `(("." . ,(expand-file-name "~/.emacs.d/backups")))
@@ -117,7 +89,6 @@
       inhibit-startup-message t
       save-place-file "~/.emacs.d/places"
       sentence-end-double-space nil
-      uniquify-buffer-name-style 'forward
       windmove-wrap-around t
       x-select-enable-clipboard t
       visible-bell t)
