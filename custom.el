@@ -84,6 +84,7 @@
       color-theme-is-global t
       diff-switches "-u"
       enable-local-eval t
+      enable-local-variables :all
       gc-cons-threshold 20000000
       global-auto-revert-mode t
       inhibit-startup-message t
