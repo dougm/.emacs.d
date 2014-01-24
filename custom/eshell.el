@@ -82,5 +82,15 @@
       (end-of-buffer)
       (pop-to-buffer buffer))))
 
+(defun toggle-eshell-visor ()
+  "Brings up a visor like eshell buffer, filling the entire emacs frame"
+  (interactive)
+  (if (string= "eshell-mode" (eval 'major-mode))
+      (jump-to-register :pre-eshell-visor-window-configuration)
+    (window-configuration-to-register :pre-eshell-visor-window-configuration)
+    (call-interactively 'eshell)
+    (delete-other-windows)))
+
 ;; key bindings
-(global-set-key (kbd "C-x !") 'eshell-cd-current-buffer)
+(global-set-key (kbd "C-c !") 'eshell-cd-current-buffer)
+(global-set-key (kbd "C-c s") 'toggle-eshell-visor)
