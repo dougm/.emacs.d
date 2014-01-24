@@ -20,7 +20,6 @@
           json-mode
           linum-off
           lua-mode
-          magit
           markdown-mode
           puppet-mode
           thrift-mode

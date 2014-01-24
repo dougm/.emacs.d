@@ -1,11 +1,9 @@
-;; ido and friends that find things faster (ag, projectile, smex, etc)
+;; ido and friends
 (el-get 'sync
-        '(ag
-          flx
+        '(flx
           ido-select-window
           ido-ubiquitous
           ido-vertical-mode
-          projectile
           smex))
 
 (require 'uniquify)
@@ -18,8 +16,7 @@
 (flx-ido-mode t)
 (ido-vertical-mode t)
 
-(setq ag-highlight-search t
-      ido-auto-merge-work-directories-length nil
+(setq ido-auto-merge-work-directories-length nil
       ido-create-new-buffer 'always
       ido-enable-prefix nil
       ido-handle-duplicate-virtual-buffers 2
@@ -28,15 +25,9 @@
       ido-use-virtual-buffers t
       uniquify-buffer-name-style 'forward)
 
-;; enable projectile minor mode
-(add-hook 'prog-mode-hook 'projectile-on)
-
 ;; key bindings
 (global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "C-x f") 'ag-project)
 (global-set-key (kbd "C-x o") 'ido-select-window)
-(global-set-key (kbd "C-x p") 'projectile-find-file)
-(global-set-key (kbd "C-x r") 'ag-regexp-project-at-point)
 
 (add-hook 'ido-setup-hook
           (lambda ()
