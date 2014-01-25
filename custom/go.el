@@ -20,6 +20,7 @@
 (add-hook 'go-mode-hook
 (lambda ()
   (local-set-key (kbd "C-c o") 'godef-jump)
+  (local-set-key (kbd "C-c -") 'pop-tag-mark)
   (local-set-key (kbd "C-c d") 'godef-describe)
   (local-set-key (kbd "C-c a") 'go-test-all)
   (local-set-key (kbd "C-c m") 'go-test-module)
