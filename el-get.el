@@ -24,6 +24,5 @@
           puppet-mode
           thrift-mode
           vagrant-tramp
-          xcscope
           yaml-mode
           ))

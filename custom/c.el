@@ -1,3 +1,25 @@
+(el-get 'sync
+        '(cmake-mode
+          xcscope))
+
+;; irony-mode depends on llvm and clang
+;; brew install llvm --with-clang --disable-shared --without-python
+(let ((llvm-bin "/usr/local/opt/llvm/bin"))
+  (when (file-directory-p llvm-bin)
+    (el-get-envpath-prepend "PATH" llvm-bin)
+    (add-to-list 'exec-path llvm-bin)))
+
+(when (executable-find "llvm-config")
+  (el-get 'sync '(irony-mode))
+
+  (defun enable-clang-ac ()
+    (require 'irony)
+    (irony-enable 'ac)
+    (irony-mode 1))
+
+  (add-hook 'c++-mode-hook 'enable-clang-ac)
+  (add-hook 'c-mode-hook 'enable-clang-ac))
+
 (c-add-style "default"
              '("bsd"
                (c-basic-offset . 4)
@@ -33,5 +55,4 @@
 
 (add-hook 'c-mode-common-hook 'maybe-vmware-style)
 
-(require 'xcscope)
 (setq-default cscope-do-not-update-database t)
