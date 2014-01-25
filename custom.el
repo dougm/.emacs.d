@@ -70,6 +70,7 @@
 (global-set-key (kbd "M-_") 'text-scale-decrease)
 
 ;; misc
+(display-time-mode 1)
 (server-start)
 (windmove-default-keybindings 'meta)
 (set-frame-parameter nil 'fullscreen 'fullboth)
@@ -82,6 +83,8 @@
 (setq backup-directory-alist `(("." . ,(expand-file-name "~/.emacs.d/backups")))
       color-theme-is-global t
       diff-switches "-u"
+      display-time-day-and-date t
+      display-time-load-average nil
       enable-local-eval t
       enable-local-variables :all
       gc-cons-threshold 20000000
