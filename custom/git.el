@@ -7,6 +7,11 @@
 (setq ag-highlight-search t
       projectile-use-git-grep t)
 
+;; e.g. ignore .git/COMMIT_EDITMSG opened via magit
+(eval-after-load "recentf"
+  '(progn
+     (add-to-list 'recentf-exclude "/\\.git/")))
+
 ;; enable projectile minor mode
 (add-hook 'prog-mode-hook 'projectile-on)
 
