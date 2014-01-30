@@ -4,6 +4,8 @@
           magit
           projectile))
 
+(autoload 'vc-git-root "vc-git")
+
 (setq ag-highlight-search t
       projectile-use-git-grep t)
 
