@@ -23,6 +23,7 @@
           markdown-mode
           puppet-mode
           thrift-mode
+          vagrant
           vagrant-tramp
           yaml-mode
           ))
