@@ -11,12 +11,17 @@
 (add-hook 'prog-mode-hook 'projectile-on)
 
 (defun git-grep-extension ()
-  "git grep files in project with the same extension as current buffer"
+  "git grep files in project with the same extension as current buffer.
+If current buffer has not extension, basename of the file is used."
   (interactive)
   (let ((regexp (grep-read-regexp))
         (ext (file-name-extension buffer-file-name))
         (dir (vc-git-root buffer-file-name)))
-    (vc-git-grep regexp (format "'*.%s'" ext) dir)))
+    (vc-git-grep regexp
+                 (if ext (format "'*.%s'" ext)
+                   (let ((name (file-name-base)))
+                     (format "'%s' '*/%s'" name name)))
+                   dir)))
 
 (defun toggle-magit-status ()
   "Brings up a magit-status buffer, filling the entire emacs frame"
