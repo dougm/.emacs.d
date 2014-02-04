@@ -22,6 +22,7 @@
           lua-mode
           markdown-mode
           puppet-mode
+          scala-mode2
           thrift-mode
           vagrant
           vagrant-tramp
