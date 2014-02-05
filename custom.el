@@ -29,8 +29,6 @@
 (setq ac-dictionary-files (list (concat user-emacs-directory ".dict")))
 (ac-config-default)
 
-(setq-default compilation-auto-jump-to-first-error t)
-
 (require 'flymake)
 (require 'flymake-cursor)
 
