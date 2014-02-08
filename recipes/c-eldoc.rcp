@@ -1,0 +1,8 @@
+(:name c-eldoc
+       :description "eldoc plugin for C source files"
+       :type github
+       :pkgname "nflath/c-eldoc"
+       :depends deferred
+       :post-init (progn
+                    (autoload 'c-turn-on-eldoc-mode "c-eldoc")
+                    (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)))

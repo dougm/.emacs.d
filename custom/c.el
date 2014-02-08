@@ -1,5 +1,6 @@
 (el-get 'sync
         '(cmake-mode
+          c-eldoc
           xcscope))
 
 ;; irony-mode depends on llvm and clang
@@ -56,3 +57,20 @@
 (add-hook 'c-mode-common-hook 'maybe-vmware-style)
 
 (setq-default cscope-do-not-update-database t)
+
+(defun c-find-tag ()
+  "Generate TAGS if needed prior to calling find-tag"
+  (interactive)
+  (let ((root (projectile-project-root)))
+    (unless (file-exists-p (concat root "TAGS"))
+      (projectile-regenerate-tags))
+    (visit-tags-table root t)
+    (call-interactively 'find-tag)))
+
+(add-hook 'c-mode-hook
+          (lambda ()
+            (let ((root (projectile-project-root)))
+              (setq c-eldoc-includes (concat "-I" root "include")))
+            (local-set-key (kbd "C-c o") 'c-find-tag)
+            (local-set-key (kbd "C-c -") 'pop-tag-mark)
+            ))
