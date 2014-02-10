@@ -1,0 +1,6 @@
+(:name yasnippet-go
+       :description "Go snippets"
+       :type github
+       :pkgname "dominikh/yasnippet-go"
+       :depends (go-mode yasnippet)
+       :post-init (yas-load-directory default-directory))

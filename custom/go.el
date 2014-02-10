@@ -8,7 +8,8 @@
           go-imports
           go-lint
           go-mode
-          go-oracle))
+          go-oracle
+          yasnippet-go))
 
 ;;; ignore 'go test -c' files
 (push ".test" completion-ignored-extensions)

@@ -27,4 +27,5 @@
           vagrant
           vagrant-tramp
           yaml-mode
+          yasnippet
           ))

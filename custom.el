@@ -24,6 +24,7 @@
 ;; auto
 (show-paren-mode 1)
 (autopair-global-mode)
+(yas-global-mode)
 
 (require 'auto-complete-config)
 (setq ac-dictionary-files (list (concat user-emacs-directory ".dict")))
