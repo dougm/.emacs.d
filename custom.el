@@ -24,7 +24,6 @@
 ;; auto
 (show-paren-mode 1)
 (autopair-global-mode)
-(yas-global-mode)
 
 (require 'auto-complete-config)
 (setq ac-dictionary-files (list (concat user-emacs-directory ".dict")))
@@ -54,6 +53,7 @@
 (add-hook 'prog-mode-hook
           (lambda ()
             (setq show-trailing-whitespace t)
+            (yas-minor-mode-on)
             (local-set-key (kbd "RET") 'newline-and-indent)))
 
 ;; keys
