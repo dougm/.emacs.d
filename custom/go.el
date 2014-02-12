@@ -62,7 +62,9 @@
 ;;; make local so we only match go test errors
 (defun go-test--compilation-hook (p)
   (set (make-local-variable 'compilation-error-regexp-alist)
-       '(("^\t+\\([^()\t\n]+\\):\\([0-9]+\\):? .*$" 1 2))))
+       '(("^\t+\\([^()\t\n]+\\):\\([0-9]+\\):? .*$" 1 2) ;; package testing
+         ("^\tLocation:\t\\([^()\t\n]+\\):\\([0-9]+\\):?.*$" 1 2) ;; package testify
+         )))
 
 ;;; generate regex for all Tests in the current buffer
 ;;; note that go test has a '-file' flag that does not work as expected
