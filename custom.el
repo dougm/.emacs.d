@@ -24,9 +24,9 @@
 ;; auto
 (show-paren-mode 1)
 (autopair-global-mode)
+(yas-load-directory (concat user-emacs-directory "snippets"))
 
 (require 'auto-complete-config)
-(setq ac-dictionary-files (list (concat user-emacs-directory ".dict")))
 (ac-config-default)
 
 (require 'flymake)
@@ -62,6 +62,7 @@
 (global-set-key (kbd "C-u") 'scroll-down-command)
 (global-set-key (kbd "C-x l") 'goto-line)
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-c C-y") 'yas-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x C-k") 'compile)
 (global-set-key (kbd "M-=") 'align-regexp)
