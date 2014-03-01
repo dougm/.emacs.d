@@ -71,7 +71,8 @@
 
 ;; misc
 (display-time-mode 1)
-(server-start)
+(load "server")
+(unless (server-running-p) (server-start))
 (windmove-default-keybindings 'meta)
 (set-frame-parameter nil 'fullscreen 'fullboth)
 (progn
