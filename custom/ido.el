@@ -6,6 +6,7 @@
           ido-vertical-mode
           smex))
 
+(require 'dired-x)
 (require 'uniquify)
 
 (setq smex-save-file (concat user-emacs-directory ".smex-items"))
