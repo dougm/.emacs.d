@@ -65,6 +65,7 @@
 (global-set-key (kbd "C-c C-y") 'yas-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x C-k") 'compile)
+(global-set-key (kbd "C-x C-o") 'ff-find-other-file)
 (global-set-key (kbd "M-=") 'align-regexp)
 (global-set-key (kbd "M-+") 'text-scale-increase)
 (global-set-key (kbd "M-_") 'text-scale-decrease)
