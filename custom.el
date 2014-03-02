@@ -69,6 +69,9 @@
 (global-set-key (kbd "M-=") 'align-regexp)
 (global-set-key (kbd "M-+") 'text-scale-increase)
 (global-set-key (kbd "M-_") 'text-scale-decrease)
+(global-set-key (kbd "M-*") (lambda ()
+                              (interactive)
+                              (save-some-buffers t)))
 
 ;; misc
 (display-time-mode 1)
