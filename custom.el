@@ -1,14 +1,23 @@
 ;; colors
-(setq solarized-broken-srgb nil)
-(load-theme 'solarized-dark t)
-(set-face-background 'show-paren-match (face-background 'default))
-(set-face-foreground 'show-paren-match "#def")
-(set-face-attribute 'show-paren-match nil :weight 'extra-bold)
-(eval-after-load "eldoc"
-  '(progn
-     (set-face-background 'eldoc-highlight-function-argument (face-background 'default))
-     (set-face-foreground 'eldoc-highlight-function-argument "#def")
-     (set-face-attribute 'eldoc-highlight-function-argument nil :weight 'extra-bold)))
+
+(require 'solarized)
+
+(deftheme solarized-dark "The dark variant of the Solarized colour theme")
+
+(defun cutomize-solarized ()
+  "customized solarized theme."
+
+  (custom-theme-set-faces
+   theme-name
+   ;; eldoc
+   `(eldoc-highlight-function-argument
+     ((,class (:foreground ,magenta :background unspecified
+                           :weight bold))))
+   ))
+(create-solarized-theme 'dark 'solarized-dark 'cutomize-solarized)
+
+(setq-default grep-highlight-matches t)
+
 (add-hook 'prog-mode-hook
           (lambda ()
             (font-lock-add-keywords

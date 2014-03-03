@@ -14,7 +14,6 @@
         '(el-get
           auto-complete
           autopair
-          color-theme-solarized
           flymake-cursor
           idle-highlight-mode
           json-mode
@@ -23,6 +22,7 @@
           markdown-mode
           puppet-mode
           scala-mode2
+          solarized-emacs
           thrift-mode
           vagrant
           vagrant-tramp
