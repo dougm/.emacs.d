@@ -9,10 +9,23 @@
 
   (custom-theme-set-faces
    theme-name
+
+   `(link ((,class (:foreground ,blue :weight normal :underline t))))
+
+   `(button ((,class (:inherit link))))
+
+   `(match ((,class (:foreground ,orange :weight bold))))
+
+   `(comint-highlight-prompt ((,class (:foreground ,blue))))
+
    ;; eldoc
    `(eldoc-highlight-function-argument
      ((,class (:foreground ,magenta :background unspecified
                            :weight bold))))
+
+   ;; irony
+   `(ac-irony-candidate-face ((,class (:inherit ac-candidate-face))))
+   `(ac-irony-selection-face ((,class (:inherit ac-selection-face))))
    ))
 (create-solarized-theme 'dark 'solarized-dark 'cutomize-solarized)
 
