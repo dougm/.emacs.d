@@ -1,0 +1,7 @@
+(:name nix-mode
+       :type http
+       :url "https://raw.github.com/NixOS/nix/master/misc/emacs/nix-mode.el"
+       :description "Emacs mode for NixOS/Nix"
+       :prepare (progn
+                  (autoload 'nix-mode "nix-mode" "Major mode for editing Nix expressions" t)
+                  (add-to-list 'auto-mode-alist '("\\.nix$" . nix-mode))))

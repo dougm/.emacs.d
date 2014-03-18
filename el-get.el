@@ -20,6 +20,7 @@
           linum-off
           lua-mode
           markdown-mode
+          nix-mode
           puppet-mode
           scala-mode2
           solarized-emacs
