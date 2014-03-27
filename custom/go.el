@@ -24,7 +24,7 @@
   (local-set-key (kbd "C-c -") 'pop-tag-mark)
   (local-set-key (kbd "C-c d") 'godef-describe)
   (local-set-key (kbd "C-c a") 'go-test-all)
-  (local-set-key (kbd "C-c m") 'go-test-module)
+  (local-set-key (kbd "C-c m") 'go-test-file)
   (local-set-key (kbd "C-c .") 'go-test-one)
 ))
 
@@ -52,6 +52,16 @@
   "test module"
   (interactive)
     (go-test--run (concat "go test -v -test.run '" (go-test--find) "'")))
+
+(defun go-test-file ()
+  "test module, switching to ${name}_test.go file if needed"
+  (interactive)
+  (let ((is-test (string-match "_test\.go$" buffer-file-truename)))
+    (unless is-test
+      (ff-find-other-file))
+    (go-test-module)
+    (unless is-test
+      (ff-find-other-file))))
 
 ;;; run 'go test ...' with our compile hook
 (defun go-test--run (cmd)
