@@ -79,10 +79,16 @@
             (local-set-key (kbd "RET") 'newline-and-indent)))
 
 ;; keys
+(defun switch-to-previous-buffer ()
+  "Switch to previously open buffer."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (global-set-key (kbd "C-u") 'scroll-down-command)
 (global-set-key (kbd "C-x l") 'goto-line)
+(global-set-key (kbd "C-c b") 'switch-to-previous-buffer)
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-c C-y") 'yas-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -94,13 +100,20 @@
 (global-set-key (kbd "M-*") (lambda ()
                               (interactive)
                               (save-some-buffers t)))
+(when window-system
+  (set-frame-parameter nil 'fullscreen 'fullboth)
+  (windmove-default-keybindings 'meta)
+  (global-unset-key (kbd "C-j"))
+  (global-set-key (kbd "C-j l") 'windmove-left)
+  (global-set-key (kbd "C-j r") 'windmove-right)
+  (global-set-key (kbd "C-j u") 'windmove-up)
+  (global-set-key (kbd "C-j d") 'windmove-down)
+  (global-set-key (kbd "C-j C-j") 'switch-to-previous-buffer))
 
 ;; misc
 (display-time-mode 1)
 (load "server")
 (unless (server-running-p) (server-start))
-(windmove-default-keybindings 'meta)
-(set-frame-parameter nil 'fullscreen 'fullboth)
 (progn
   ;; Turn off mouse interface early in startup to avoid momentary display
   (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
