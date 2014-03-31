@@ -74,6 +74,7 @@
   (set (make-local-variable 'compilation-error-regexp-alist)
        '(("^\t+\\([^()\t\n]+\\):\\([0-9]+\\):? .*$" 1 2) ;; package testing
          ("^\tLocation:\t\\([^()\t\n]+\\):\\([0-9]+\\):?.*$" 1 2) ;; package testify
+         ("^\\([^()\t\n]+.go\\):\\([0-9]+\\):\\([0-9]+\\)?:? .*$" 1 2 3) ;; compile error
          )))
 
 ;;; generate regex for all Tests in the current buffer
