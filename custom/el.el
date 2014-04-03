@@ -1,3 +1,6 @@
+(el-get 'sync
+        '(paredit))
+
 (defun find-symbol-at-point ()
   "Find directly the function or variable at point in the other window."
   (interactive)
