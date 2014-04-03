@@ -21,6 +21,7 @@
           lua-mode
           markdown-mode
           nix-mode
+          paredit
           puppet-mode
           scala-mode2
           solarized-emacs
