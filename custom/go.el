@@ -28,6 +28,22 @@
   (local-set-key (kbd "C-c .") 'go-test-one)
 ))
 
+(defun go-path ()
+  "setenv GOPATH relative to current buffer"
+  (interactive)
+  (let* ((buf (or buffer-file-name default-directory))
+         (dir (locate-dominating-file buf "src")))
+    (if dir
+        (let ((rel (file-relative-name buf dir))
+              (env (getenv "GOPATH")))
+          (if (and env (locate-file rel (split-string env path-separator t)))
+              ;; buffer is in current GOPATH already
+              (message (concat "GOPATH=" env))
+            (let ((dir (expand-file-name dir)))
+              (setenv "GOPATH" dir)
+              (message (concat "set GOPATH=" dir)))))
+      (message "unable to derive GOPATH"))))
+
 (defun go-build ()
   "compile project"
   (interactive)
