@@ -44,6 +44,23 @@
               (message (concat "set GOPATH=" dir)))))
       (message "unable to derive GOPATH"))))
 
+(defun go-project-files ()
+  (-filter (lambda (file)
+             (string= (file-name-extension file) "go"))
+           (projectile-current-project-files)))
+
+(defun go-rewrite (from to)
+  "Apply Go rewrite rule to current project"
+  (interactive
+   (list (read-from-minibuffer "Pattern: " (projectile-symbol-at-point))
+         (read-from-minibuffer "Replacement: ")))
+  (projectile-with-default-dir (projectile-project-root)
+    (projectile-save-project-buffers)
+    (apply 'call-process "gofmt" nil (get-buffer-create "*Go Rewrite*") nil
+           "-l" "-w" "-r" (format "%s -> %s" from to)
+           (go-project-files))
+    (projectile-update-project-buffers)))
+
 (defun go-build ()
   "compile project"
   (interactive)
