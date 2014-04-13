@@ -47,6 +47,7 @@
 (show-paren-mode 1)
 (autopair-global-mode)
 (yas-load-directory (concat user-emacs-directory "snippets"))
+(global-auto-revert-mode)
 
 (require 'auto-complete-config)
 (ac-config-default)
@@ -128,7 +129,6 @@
       enable-local-eval t
       enable-local-variables :all
       gc-cons-threshold 20000000
-      global-auto-revert-mode t
       inhibit-startup-message t
       save-place-file "~/.emacs.d/places"
       sentence-end-double-space nil
