@@ -59,7 +59,7 @@
     (apply 'call-process "gofmt" nil (get-buffer-create "*Go Rewrite*") nil
            "-l" "-w" "-r" (format "%s -> %s" from to)
            (go-project-files))
-    (projectile-update-project-buffers)))
+    (auto-revert-buffers)))
 
 (defun go-build ()
   "compile project"
