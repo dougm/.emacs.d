@@ -10,14 +10,17 @@
         (find-variable-other-window symb)
       (find-function-at-point))))
 
+(defun file-basedir (file)
+  "Base name of the file's directory name."
+  (file-name-nondirectory (directory-file-name (file-name-directory file))))
+
 (defun recompile-elc-on-save ()
-  "Recompile your elc when saving an elisp file."
-  (add-hook 'after-save-hook
-            (lambda ()
-              (when (file-exists-p (byte-compile-dest-file buffer-file-name))
-                (emacs-lisp-byte-compile)))
-            nil
-            t))
+  "Recompile elc when saving an elisp file and reload el-get package."
+  (when (file-exists-p (byte-compile-dest-file buffer-file-name))
+    (emacs-lisp-byte-compile)
+    (let ((name (file-basedir buffer-file-name)))
+      (when (el-get-read-package-status name)
+        (el-get-reload name)))))
 
 (add-hook 'ielm-mode-hook 'enable-paredit-mode)
 
@@ -25,7 +28,7 @@
           (lambda ()
             (eldoc-mode t)
             (enable-paredit-mode)
-            (recompile-elc-on-save)
+            (add-hook 'after-save-hook 'recompile-elc-on-save nil t)
             (local-set-key (kbd "C-h C-f") 'find-function-at-point)
             (local-set-key (kbd "C-h C-v") 'find-variable-at-point)
             (local-set-key (kbd "C-c o") 'find-symbol-at-point)
