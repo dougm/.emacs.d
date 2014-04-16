@@ -44,16 +44,41 @@
               (message (concat "set GOPATH=" dir)))))
       (message "unable to derive GOPATH"))))
 
+(defvar go-project-files-ignore
+  '("third_party")
+  "A list of file patterns to ignore.")
+
 (defun go-project-files ()
   (-filter (lambda (file)
-             (string= (file-name-extension file) "go"))
+             (and (string= (file-name-extension file) "go")
+                  (not (-any? (lambda (pat)
+                                (string-match pat file))
+                              go-project-files-ignore))))
            (projectile-current-project-files)))
+
+(defun go-rewrite--pattern-args (n)
+  "Generate function signature pattern for go-rewrite"
+  (let ((arg (string-to-char "a")))
+    (mapconcat 'identity
+               (mapcar (lambda (i)
+                         (char-to-string (+ arg i)))
+                       (number-sequence 0 (- n 1))) ",")))
+
+(defun go-rewrite--pattern ()
+  "Generate default pattern for go-rewrite"
+  (let ((fn (go-eldoc--get-funcinfo)))
+    (if fn
+        (let* ((name (plist-get fn :name))
+               (signature (go-eldoc--analyze-signature (plist-get fn :signature)))
+               (args (go-eldoc--split-argument-type (plist-get signature :arg-type))))
+          (format "x.%s(%s)" name (go-rewrite--pattern-args (length args))))
+      (projectile-symbol-at-point))))
 
 (defun go-rewrite (from to)
   "Apply Go rewrite rule to current project"
   (interactive
-   (list (read-from-minibuffer "Pattern: " (projectile-symbol-at-point))
-         (read-from-minibuffer "Replacement: ")))
+   (let ((pat (read-from-minibuffer "Pattern: " (go-rewrite--pattern))))
+     (list pat (read-from-minibuffer "Replacement: " pat))))
   (projectile-with-default-dir (projectile-project-root)
     (projectile-save-project-buffers)
     (apply 'call-process "gofmt" nil (get-buffer-create "*Go Rewrite*") nil
