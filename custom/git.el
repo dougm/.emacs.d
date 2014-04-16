@@ -30,6 +30,32 @@ If current buffer has not extension, basename of the file is used."
                      (format "'%s' '*/%s'" name name)))
                    dir)))
 
+(defun github-update ()
+  "Update remotes from github, rebasing current and local master branch.
+Assumes a fork, adding remote for $USER if needed.
+For el-get packages, reload after update."
+  (interactive)
+  (let ((project (projectile-project-name))
+        (branch (magit-get-current-branch))
+        (user (or (getenv "GITHUB_USER")
+                  (getenv "USER"))))
+    (unless (magit-get "remote" user "url")
+      (let ((url (format "git@github.com:%s/%s.git" user project)))
+        (message "git remote add %s %s" user url)
+        (magit-add-remote user url)))
+    (magit-remote-update)
+    (message "git rebase origin/master %s" branch)
+    (magit-run-git "rebase" "origin/master")
+    (unless (string= branch "master")
+      (message "git rebase origin/master master")
+      (magit-run-git "rebase" "origin/master" "master"))
+    (when (el-get-read-package-status project)
+      (el-get-byte-compile project)
+      (el-get-reload project))
+    (unless (string= branch "master")
+      (message "git checkout %s" branch)
+      (magit-checkout branch))))
+
 (defun toggle-magit-status ()
   "Brings up a magit-status buffer, filling the entire emacs frame"
   (interactive)
