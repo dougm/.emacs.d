@@ -14,6 +14,7 @@
         '(el-get
           auto-complete
           autopair
+          dockerfile-mode
           flymake-cursor
           idle-highlight-mode
           json-mode
