@@ -61,6 +61,37 @@ For el-get packages, reload after update."
       (el-get-byte-compile project)
       (el-get-reload project))))
 
+(defun git-check ()
+  "Check for any unpushed branches, unstaged commits, etc."
+  (-any? (lambda (cmd)
+           (not (= (length (shell-command-to-string cmd)) 0)))
+         '("git log --branches --not --remotes"
+           "git status -s")))
+
+(defun git-status-all ()
+  "Magit status for all projects."
+  (interactive)
+  (let (project)
+    (with-current-buffer (get-buffer-create "*git-status-all*")
+      (setq buffer-read-only nil)
+      (erase-buffer)
+      (dolist (project (projectile-relevant-known-projects))
+        (let ((default-directory (expand-file-name project)))
+          (when (and (file-exists-p default-directory)
+                     (git-check))
+            (lexical-let ((dir default-directory))
+             (insert-text-button (file-name-nondirectory (directory-file-name project))
+                                 'action (lambda (button)
+                                           (magit-status dir))
+                                 'follow-link t
+                                 'mouse-face magit-item-highlight-face))
+            (insert "\n\n"))))
+      (let ((w (display-buffer (current-buffer))))
+        (balance-windows)
+        (shrink-window-if-larger-than-buffer w)
+        (set-window-point w (point-min)))
+      (setq buffer-read-only t))))
+
 (defun toggle-magit-status ()
   "Brings up a magit-status buffer, filling the entire emacs frame"
   (interactive)
