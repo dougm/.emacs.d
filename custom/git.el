@@ -37,7 +37,9 @@ If current buffer has not extension, basename of the file is used."
 
 (defun git-hup ()
   "Update remotes from github, rebasing current and local master branch.
-Assumes a fork, adding remote for $USER if needed.
+Assumes a fork, adding a remote for $USER and configuring the current branch
+remote to $USER if not already set.  With this config, magit will push to
+your fork by default, rather than origin.
 For el-get packages, reload after update."
   (interactive)
   (let ((project (projectile-project-name))
@@ -51,6 +53,9 @@ For el-get packages, reload after update."
     (git-run "remote" "update")
     (git-run "rebase" "origin/master" branch)
     (unless (string= branch "master")
+      (unless (magit-get "branch" branch "remote")
+        (message "git config branch.%s.remote %s" branch user)
+        (magit-set user "branch" branch "remote"))
       (git-run "rebase" "origin/master" "master"))
     (when (el-get-read-package-status project)
       (el-get-byte-compile project)
