@@ -2,6 +2,7 @@
 (el-get 'sync
         '(ag
           magit
+          magit-gerrit
           projectile))
 
 (autoload 'vc-git-root "vc-git")
