@@ -41,6 +41,9 @@ If current buffer has not extension, basename of the file is used."
 Assumes a fork, adding a remote for $USER and configuring the current branch
 remote to $USER if not already set.  With this config, magit will push to
 your fork by default, rather than origin.
+If current branch has been merged with upstream master, delete it and stay
+on the master branch - assumes PR was merged upstream.  Otherwise, stay
+checked out on the current topic branch.
 For el-get packages, reload after update."
   (interactive)
   (let ((project (projectile-project-name))
@@ -58,7 +61,9 @@ For el-get packages, reload after update."
         (message "git config branch.%s.remote %s" branch user)
         (magit-set user "branch" branch "remote"))
       (git-run "rebase" "origin/master" "master")
-      (git-run "checkout" branch))
+      (if (string= (magit-rev-parse "master") (magit-rev-parse branch))
+          (git-run "branch" "-d" branch)
+        (git-run "checkout" branch)))
     (when (el-get-read-package-status project)
       (el-get-byte-compile project)
       (el-get-reload project))))
