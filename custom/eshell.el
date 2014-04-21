@@ -92,5 +92,5 @@
     (delete-other-windows)))
 
 ;; key bindings
-(global-set-key (kbd "C-c !") 'eshell-cd-current-buffer)
+(global-set-key (kbd "C-c `") 'eshell-cd-current-buffer)
 (global-set-key (kbd "C-c s") 'toggle-eshell-visor)

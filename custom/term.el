@@ -22,6 +22,16 @@
 
 (setq multi-term-program "bash")
 
+(defun term-cd-current-buffer ()
+  "multi-term-next and cd to directory of current-buffer."
+  (interactive)
+  (let ((dir default-directory))
+    (multi-term-next)
+    (unless (string= dir default-directory)
+      (term-send-raw-string (format "cd %s\n" dir))
+      (term-send-raw-string "\C-l"))))
+
+(global-set-key (kbd "C-c !") 'term-cd-current-buffer)
 (global-set-key (kbd "C-c t") 'multi-term-next)
 (global-set-key (kbd "C-c T") 'multi-term)
 (global-set-key (kbd "C-c v") 'vagrant-tramp-term)
