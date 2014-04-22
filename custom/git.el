@@ -75,7 +75,8 @@ For el-get packages, reload after update."
   (-any? (lambda (cmd)
            (not (= (length (shell-command-to-string cmd)) 0)))
          '("git log --branches --not --remotes"
-           "git status -s")))
+           "git status -s"
+           "git stash list")))
 
 (defun git-status-all ()
   "Magit status for all projects."
