@@ -10,6 +10,11 @@
 
 (add-to-list 'el-get-recipe-path (concat user-emacs-directory "recipes"))
 
+;; setenv PATH early, as other el-get recipes may append to PATH
+(when (memq window-system '(mac ns))
+  (el-get 'sync '(exec-path-from-shell))
+  (exec-path-from-shell-initialize))
+
 (el-get 'sync
         '(el-get
           auto-complete
