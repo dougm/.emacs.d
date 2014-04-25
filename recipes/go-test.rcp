@@ -1,0 +1,5 @@
+(:name go-test
+       :description "Emacs mode to go unit test command line tool"
+       :type github
+       :pkgname "dougm/gotest.el"
+       :depends (f s go-mode))
