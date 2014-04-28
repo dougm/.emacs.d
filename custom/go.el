@@ -4,7 +4,6 @@
           go-def
           go-eldoc
           go-errcheck-el
-          go-flymake
           go-imports
           go-lint
           go-mode
@@ -29,5 +28,4 @@
   (local-set-key (kbd "C-c m") 'go-test-current-file)
   (local-set-key (kbd "C-c .") 'go-test-current-test)
   (setq go-test-verbose t)
-  (setq flymake-start-syntax-check-on-find-file nil)
 ))

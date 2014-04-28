@@ -48,18 +48,12 @@
 (autopair-global-mode)
 (yas-load-directory (concat user-emacs-directory "snippets"))
 (global-auto-revert-mode)
+(global-flycheck-mode)
+;; don't enable flycheck unless we modify the buffer
+(delq 'mode-enabled flycheck-check-syntax-automatically)
 
 (require 'auto-complete-config)
 (ac-config-default)
-
-(require 'flymake)
-(require 'flymake-cursor)
-
-(add-hook 'flymake-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c e") 'flymake-goto-next-error)))
-(add-hook 'find-file-hook 'flymake-find-file-hook)
-(setq flymake-gui-warnings-enabled nil)
 
 ;; whitespace
 (setq-default indent-tabs-mode nil)

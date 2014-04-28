@@ -1,6 +1,3 @@
-(el-get 'sync
-        '(flymake-shell))
-
 (add-hook 'sh-mode-hook
           (lambda ()
             (whitespace-mode 0) ;; workaround bug in emacs-HEAD

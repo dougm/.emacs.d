@@ -20,7 +20,10 @@
           auto-complete
           autopair
           dockerfile-mode
-          flymake-cursor
+          flycheck
+          flycheck-cask
+          flycheck-color-mode-line
+          flycheck-pos-tip
           idle-highlight-mode
           json-mode
           linum-off

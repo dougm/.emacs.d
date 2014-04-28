@@ -22,7 +22,20 @@
       (when (el-get-read-package-status name)
         (el-get-reload name)))))
 
+(defun run-ert ()
+  (interactive)
+  (eval-buffer)
+  (call-interactively 'ert))
+
+(defun my-flycheck-hook ()
+  (unless flycheck-emacs-lisp-load-path
+    (setq-local flycheck-emacs-lisp-load-path load-path)
+    (setq-local flycheck-checkers '(emacs-lisp))))
+
 (add-hook 'ielm-mode-hook 'enable-paredit-mode)
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook 'my-flycheck-hook t))
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
@@ -32,6 +45,7 @@
             (local-set-key (kbd "C-h C-f") 'find-function-at-point)
             (local-set-key (kbd "C-h C-v") 'find-variable-at-point)
             (local-set-key (kbd "C-c o") 'find-symbol-at-point)
+            (local-set-key (kbd "C-c .") 'run-ert)
             (let ((map paredit-mode-map))
               (define-key map (kbd "C-j") nil)
               (define-key map (kbd "M-<up>") nil)
