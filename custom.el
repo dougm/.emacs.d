@@ -95,8 +95,14 @@
 (global-set-key (kbd "M-*") (lambda ()
                               (interactive)
                               (save-some-buffers t)))
+
 (when window-system
-  (set-frame-parameter nil 'fullscreen 'fullboth)
+  (when (memq window-system '(mac ns))
+    (set-face-font 'default "Monaco-13")
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier 'super)
+    (set-frame-parameter nil 'fullscreen 'fullboth))
+
   (windmove-default-keybindings 'meta)
   (global-unset-key (kbd "C-j"))
   (global-set-key (kbd "C-j l") 'windmove-left)
