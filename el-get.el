@@ -18,7 +18,6 @@
 (el-get 'sync
         '(el-get
           auto-complete
-          autopair
           dockerfile-mode
           flycheck
           flycheck-cask
@@ -31,6 +30,7 @@
           markdown-mode
           puppet-mode
           scala-mode2
+          smartparens
           solarized-emacs
           thrift-mode
           vagrant

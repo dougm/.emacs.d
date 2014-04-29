@@ -43,15 +43,20 @@
 (global-hl-line-mode t)
 (add-hook 'prog-mode-hook 'idle-highlight-mode)
 
-;; auto
-(show-paren-mode 1)
-(autopair-global-mode)
-(yas-load-directory (concat user-emacs-directory "snippets"))
-(global-auto-revert-mode)
+;; smartparens
+(require 'smartparens-config)
+(show-smartparens-global-mode 1)
+(setq sp-base-key-bindings 'paredit)
+(setq sp-autoskip-closing-pair 'always)
+(setq sp-hybrid-kill-entire-symbol nil)
+(sp-use-paredit-bindings)
+
+;; flycheck
 (global-flycheck-mode)
 ;; don't enable flycheck unless we modify the buffer
 (delq 'mode-enabled flycheck-check-syntax-automatically)
 
+;; autocomplete
 (require 'auto-complete-config)
 (ac-config-default)
 
@@ -66,10 +71,11 @@
              (setq show-trailing-whitespace t)
              (set-fill-column 80)))
 
-(add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook
           (lambda ()
+            (whitespace-mode)
             (setq show-trailing-whitespace t)
+            (smartparens-mode)
             (yas-minor-mode-on)
             (local-set-key (kbd "RET") 'newline-and-indent)))
 
@@ -103,7 +109,7 @@
     (setq mac-option-modifier 'super)
     (set-frame-parameter nil 'fullscreen 'fullboth))
 
-  (windmove-default-keybindings 'meta)
+  (windmove-default-keybindings)
   (global-unset-key (kbd "C-j"))
   (global-set-key (kbd "C-j l") 'windmove-left)
   (global-set-key (kbd "C-j r") 'windmove-right)
@@ -112,8 +118,10 @@
   (global-set-key (kbd "C-j C-j") 'switch-to-previous-buffer))
 
 ;; misc
+(yas-load-directory (concat user-emacs-directory "snippets"))
+(global-auto-revert-mode)
 (display-time-mode 1)
-(load "server")
+(require 'server)
 (unless (server-running-p) (server-start))
 (progn
   ;; Turn off mouse interface early in startup to avoid momentary display

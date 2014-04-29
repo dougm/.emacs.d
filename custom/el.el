@@ -1,6 +1,5 @@
 (el-get 'sync
-        '(paredit
-          parenface))
+        '(rainbow-delimiters))
 
 (defun find-symbol-at-point ()
   "Find directly the function or variable at point in the other window."
@@ -32,23 +31,23 @@
     (setq-local flycheck-emacs-lisp-load-path load-path)
     (setq-local flycheck-checkers '(emacs-lisp))))
 
-(add-hook 'ielm-mode-hook 'enable-paredit-mode)
-
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook 'my-flycheck-hook t))
+
+(add-hook 'ielm-mode-hook 'smartparens-strict-mode)
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (eldoc-mode t)
-            (enable-paredit-mode)
+            (smartparens-strict-mode t)
+            (rainbow-delimiters-mode t)
             (add-hook 'after-save-hook 'recompile-elc-on-save nil t)
             (local-set-key (kbd "C-h C-f") 'find-function-at-point)
             (local-set-key (kbd "C-h C-v") 'find-variable-at-point)
             (local-set-key (kbd "C-c o") 'find-symbol-at-point)
             (local-set-key (kbd "C-c .") 'run-ert)
-            (let ((map paredit-mode-map))
-              (define-key map (kbd "C-j") nil)
-              (define-key map (kbd "M-<up>") nil)
-              (define-key map (kbd "M-<down>") nil)
-              )
             ))
+
+(define-key lisp-mode-shared-map (kbd "M-(") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "(")))
+(define-key lisp-mode-shared-map (kbd "M-[") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "[")))
+(define-key lisp-mode-shared-map (kbd "M-\"") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "\"")))

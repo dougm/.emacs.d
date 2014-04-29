@@ -6,8 +6,7 @@
 
 (add-hook 'term-mode-hook
           (lambda ()
-            (setq autopair-dont-activate t
-                  show-trailing-whitespace nil
+            (setq show-trailing-whitespace nil
                   whitespace-style nil
                   term-buffer-maximum-size 5000)
             (define-key term-raw-map (kbd "C-'") 'term-line-mode)
