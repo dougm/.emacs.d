@@ -41,7 +41,7 @@
 (add-hook 'prog-mode-hook 'linum-on)
 (column-number-mode t)
 (global-hl-line-mode t)
-(add-hook 'prog-mode-hook 'idle-highlight-mode)
+(volatile-highlights-mode t)
 
 ;; smartparens
 (require 'smartparens-config)

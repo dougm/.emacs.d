@@ -23,7 +23,6 @@
           flycheck-cask
           flycheck-color-mode-line
           flycheck-pos-tip
-          idle-highlight-mode
           json-mode
           linum-off
           lua-mode
@@ -35,6 +34,7 @@
           thrift-mode
           vagrant
           vagrant-tramp
+          volatile-highlights
           yaml-mode
           yasnippet
           ))
