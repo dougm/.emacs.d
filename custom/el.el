@@ -9,9 +9,10 @@
         (find-variable-other-window symb)
       (find-function-at-point))))
 
-(defun file-basedir (file)
+(defun file-basedir (&optional file)
   "Base name of the file's directory name."
-  (file-name-nondirectory (directory-file-name (file-name-directory file))))
+  (file-name-nondirectory (directory-file-name
+                           (file-name-directory (or file buffer-file-name)))))
 
 (defun recompile-elc-on-save ()
   "Recompile elc when saving an elisp file and reload el-get package."
@@ -26,13 +27,12 @@
   (eval-buffer)
   (call-interactively 'ert))
 
-(defun my-flycheck-hook ()
+(defun el-flycheck-hook ()
   (unless flycheck-emacs-lisp-load-path
-    (setq-local flycheck-emacs-lisp-load-path load-path)
-    (setq-local flycheck-checkers '(emacs-lisp))))
-
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook 'my-flycheck-hook t))
+    (if (string= "custom" (file-basedir))
+        (setq-local flycheck-checkers '())
+      (setq-local flycheck-emacs-lisp-load-path load-path)
+      (setq-local flycheck-checkers '(emacs-lisp)))))
 
 (add-hook 'ielm-mode-hook 'smartparens-strict-mode)
 
@@ -42,6 +42,7 @@
             (smartparens-strict-mode t)
             (rainbow-delimiters-mode t)
             (add-hook 'after-save-hook 'recompile-elc-on-save nil t)
+            (add-hook 'flycheck-mode-hook 'el-flycheck-hook t t)
             (local-set-key (kbd "C-h C-f") 'find-function-at-point)
             (local-set-key (kbd "C-h C-v") 'find-variable-at-point)
             (local-set-key (kbd "C-c o") 'find-symbol-at-point)
