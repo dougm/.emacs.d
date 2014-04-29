@@ -92,6 +92,9 @@
 (global-set-key (kbd "C-c b") 'switch-to-previous-buffer)
 (global-set-key (kbd "C-c w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-c C-y") 'yas-expand)
+(global-set-key (kbd "C-x O") (lambda ()
+                                (interactive)
+                                (other-window -1)))
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x C-k") 'compile)
 (global-set-key (kbd "C-x C-o") 'ff-find-other-file)
@@ -109,13 +112,7 @@
     (setq mac-option-modifier 'super)
     (set-frame-parameter nil 'fullscreen 'fullboth))
 
-  (windmove-default-keybindings)
-  (global-unset-key (kbd "C-j"))
-  (global-set-key (kbd "C-j l") 'windmove-left)
-  (global-set-key (kbd "C-j r") 'windmove-right)
-  (global-set-key (kbd "C-j u") 'windmove-up)
-  (global-set-key (kbd "C-j d") 'windmove-down)
-  (global-set-key (kbd "C-j C-j") 'switch-to-previous-buffer))
+  (windmove-default-keybindings))
 
 ;; misc
 (yas-load-directory (concat user-emacs-directory "snippets"))

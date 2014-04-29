@@ -1,7 +1,6 @@
 ;; ido and friends
 (el-get 'sync
         '(flx
-          ido-select-window
           ido-ubiquitous
           ido-vertical-mode
           smex))
@@ -28,7 +27,6 @@
 
 ;; key bindings
 (global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "C-x o") 'ido-select-window)
 
 (add-hook 'ido-setup-hook
           (lambda ()
