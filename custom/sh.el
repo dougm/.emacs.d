@@ -1,3 +1,6 @@
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
 (add-hook 'sh-mode-hook
           (lambda ()
             (whitespace-mode 0) ;; workaround bug in emacs-HEAD
