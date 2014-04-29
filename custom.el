@@ -51,6 +51,21 @@
 (setq sp-hybrid-kill-entire-symbol nil)
 (sp-use-paredit-bindings)
 
+(defun my-open-block-mode (id action context)
+  (when (eq action 'insert)
+    (newline)
+    (newline)
+    (indent-according-to-mode)
+    (previous-line)
+    (indent-according-to-mode)))
+
+(dolist (mode '('c-mode 'c++-mode 'go-mode))
+  (sp-local-pair mode "{" nil :post-handlers '(:add my-open-block-mode)))
+
+(global-set-key (kbd "M-(") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "(")))
+(global-set-key (kbd "M-[") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "[")))
+(global-set-key (kbd "M-\"") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "\"")))
+
 ;; flycheck
 (global-flycheck-mode)
 ;; don't enable flycheck unless we modify the buffer

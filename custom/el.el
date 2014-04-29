@@ -48,7 +48,3 @@
             (local-set-key (kbd "C-c o") 'find-symbol-at-point)
             (local-set-key (kbd "C-c .") 'run-ert)
             ))
-
-(define-key lisp-mode-shared-map (kbd "M-(") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "(")))
-(define-key lisp-mode-shared-map (kbd "M-[") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "[")))
-(define-key lisp-mode-shared-map (kbd "M-\"") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "\"")))
