@@ -90,6 +90,7 @@
           (lambda ()
             (whitespace-mode)
             (setq show-trailing-whitespace t)
+            (setq-default save-place t)
             (smartparens-mode)
             (yas-minor-mode-on)
             (local-set-key (kbd "RET") 'newline-and-indent)))
@@ -133,6 +134,7 @@
 (yas-load-directory (concat user-emacs-directory "snippets"))
 (global-auto-revert-mode)
 (display-time-mode 1)
+(require 'saveplace)
 (require 'server)
 (unless (server-running-p) (server-start))
 (progn
@@ -142,6 +144,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (setq backup-directory-alist `(("." . ,(expand-file-name "~/.emacs.d/backups")))
+      save-place-file (expand-file-name "~/.emacs.d/places")
       color-theme-is-global t
       diff-switches "-u"
       display-time-day-and-date t
