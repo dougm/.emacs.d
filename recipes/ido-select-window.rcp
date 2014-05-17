@@ -1,6 +1,0 @@
-(:name ido-select-window
-       :description "Select a window using ido and buffer names"
-       :type github
-       :pkgname "pjones/ido-select-window"
-       :load-path "lisp"
-       :submodule nil)
